@@ -1,11 +1,13 @@
 {
-    "name": "cmd-wrapper/wrapper-name-slug",
+    "name": "cmd-wrapper/laravel-artisan",
     "description": "Wrapper Template",
     "type": "library",
     "require": {
         "php": "^8",
         "artarts36/shell-command": "^2.1.13",
-        "cmd-wrapper/wrapper-contracts": "dev-main"
+        "cmd-wrapper/wrapper-contracts": "^0.1",
+        "cmd-wrapper/wrapper-core": "^0.1.1",
+        "cmd-wrapper/attributes": "^0.1.2"
     },
     "license": "MIT",
     "repositories": [
@@ -16,12 +18,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "CmdWrapper\\Wrapper\\": "src/"
+            "CmdWrapper\\Wrapper\\Php\\Laravel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CmdWrapper\\Wrapper\\Tests\\": "src/"
+            "CmdWrapper\\Wrapper\\Php\\Laravel\\Tests\\": "tests/"
         }
     },
     "authors": [
