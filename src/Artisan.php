@@ -10,6 +10,7 @@ use CmdWrapper\Wrapper\Core\BinWrapper;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\ConfigCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\PassportCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\RouteCommand;
+use CmdWrapper\Wrapper\Php\Laravel\Artisan\StorageCommand;
 
 class Artisan extends BinWrapper
 {
@@ -40,10 +41,10 @@ class Artisan extends BinWrapper
         return $this->newCommand()->addArgument($command, false)->executeOrFail($this->commandExecutor);
     }
 
-    #[EqualsCommand('./artisan storage:link')]
-    public function linkStorage(): void
+    #[CommandNamespace('storage')]
+    public function storage(): StorageCommand
     {
-        $this->runCommand('storage:link');
+        return new StorageCommand($this);
     }
 
     #[CommandNamespace('config')]
