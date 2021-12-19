@@ -8,6 +8,7 @@ use CmdWrapper\Wrapper\Attributes\CommandNamespace;
 use CmdWrapper\Wrapper\Attributes\EqualsCommand;
 use CmdWrapper\Wrapper\Core\BinWrapper;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\ConfigCommand;
+use CmdWrapper\Wrapper\Php\Laravel\Artisan\PassportCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\RouteCommand;
 
 class Artisan extends BinWrapper
@@ -55,5 +56,11 @@ class Artisan extends BinWrapper
     public function route(): RouteCommand
     {
         return new RouteCommand($this);
+    }
+
+    #[CommandNamespace('passport')]
+    public function passport(): PassportCommand
+    {
+        return new PassportCommand($this);
     }
 }
