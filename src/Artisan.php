@@ -9,6 +9,7 @@ use CmdWrapper\Wrapper\Attributes\EqualsCommand;
 use CmdWrapper\Wrapper\Core\BinWrapper;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\ConfigCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\PassportCommand;
+use CmdWrapper\Wrapper\Php\Laravel\Artisan\QueueCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\RouteCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\StorageCommand;
 
@@ -63,5 +64,11 @@ class Artisan extends BinWrapper
     public function passport(): PassportCommand
     {
         return new PassportCommand($this);
+    }
+
+    #[CommandNamespace('queue')]
+    public function queue(): QueueCommand
+    {
+        return new QueueCommand($this);
     }
 }
