@@ -12,6 +12,7 @@ use CmdWrapper\Wrapper\Php\Laravel\Artisan\PassportCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\QueueCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\RouteCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\StorageCommand;
+use CmdWrapper\Wrapper\Php\Laravel\Artisan\ViewCommand;
 
 class Artisan extends BinWrapper
 {
@@ -70,5 +71,11 @@ class Artisan extends BinWrapper
     public function queue(): QueueCommand
     {
         return new QueueCommand($this);
+    }
+
+    #[CommandNamespace('view')]
+    public function view(): ViewCommand
+    {
+        return new ViewCommand($this);
     }
 }
