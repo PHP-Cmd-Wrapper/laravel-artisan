@@ -8,6 +8,7 @@ use CmdWrapper\Wrapper\Attributes\CommandNamespace;
 use CmdWrapper\Wrapper\Attributes\EqualsCommand;
 use CmdWrapper\Wrapper\Core\BinWrapper;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\ConfigCommand;
+use CmdWrapper\Wrapper\Php\Laravel\Artisan\KeyCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\MigrateCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\PassportCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\QueueCommand;
@@ -25,10 +26,10 @@ class Artisan extends BinWrapper
         return new MigrateCommand($this);
     }
 
-    #[EqualsCommand('./artisan key:generate')]
-    public function generateKey(): void
+    #[CommandNamespace('key')]
+    public function key(): KeyCommand
     {
-        $this->newCommand()->addArgument('key:generate', false)->executeOrFail($this->commandExecutor);
+        return new KeyCommand($this);
     }
 
     #[EqualsCommand('./artisan $command')]
