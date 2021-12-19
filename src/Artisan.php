@@ -8,6 +8,7 @@ use CmdWrapper\Wrapper\Attributes\CommandNamespace;
 use CmdWrapper\Wrapper\Attributes\EqualsCommand;
 use CmdWrapper\Wrapper\Core\BinWrapper;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\ConfigCommand;
+use CmdWrapper\Wrapper\Php\Laravel\Artisan\MigrateCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\PassportCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\QueueCommand;
 use CmdWrapper\Wrapper\Php\Laravel\Artisan\RouteCommand;
@@ -18,17 +19,10 @@ class Artisan extends BinWrapper
 {
     protected static string $defaultBinary = './artisan';
 
-    #[EqualsCommand('./artisan migrate')]
-    #[EqualsCommand('./artisan migrate --force')]
-    public function migrate(bool $force = true): void
+    #[CommandNamespace('migrate')]
+    public function migrate(): MigrateCommand
     {
-        $this
-            ->newCommand()
-            ->addArgument('migrate')
-            ->when($force, function (ShellCommandInterface $command) {
-                $command->addOption('force');
-            })
-            ->executeOrFail($this->commandExecutor);
+        return new MigrateCommand($this);
     }
 
     #[EqualsCommand('./artisan key:generate')]
